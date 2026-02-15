@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVN Premium Calculator</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}body{background:linear-gradient(135deg,#1a1a2e 0,#16213e 100%);color:#fff;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}.container{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border-radius:20px;padding:40px;width:100%;max-width:500px;box-shadow:0 15px 35px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.1)}.header{text-align:center;margin-bottom:30px}.header h1{font-size:2.5rem;background:linear-gradient(45deg,#00b4db,#0083b0);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}.header p{color:#aaa;font-size:1.1rem}.input-group{margin-bottom:25px}.input-group label{display:block;margin-bottom:8px;color:#00b4db;font-weight:600;font-size:1.1rem}.input-group input{width:100%;padding:15px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);border-radius:10px;color:#fff;font-size:1.2rem;transition:all .3s ease}.input-group input:focus{outline:0;border-color:#00b4db;box-shadow:0 0 15px rgba(0,180,219,.3)}.input-group input::placeholder{color:rgba(255,255,255,.4)}.btn-calculate{width:100%;padding:18px;background:linear-gradient(45deg,#00b4db,#0083b0);color:#fff;border:none;border-radius:10px;font-size:1.3rem;font-weight:600;cursor:pointer;transition:all .3s ease;margin-top:10px}.btn-calculate:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(0,180,219,.4)}.btn-calculate:active{transform:translateY(0)}.results{margin-top:30px;background:rgba(0,0,0,.3);border-radius:15px;padding:25px;display:none;animation:fadeIn .5s ease}.results.show{display:block}.result-item{margin-bottom:20px;padding:15px;background:rgba(255,255,255,.05);border-radius:10px;border-left:4px solid #00b4db}.result-item:last-child{margin-bottom:0}.result-label{font-size:1rem;color:#aaa;margin-bottom:5px}.result-value{font-size:1.8rem;font-weight:700;color:#00b4db}.history{margin-top:30px;background:rgba(0,0,0,.3);border-radius:15px;padding:20px}.history h3{color:#00b4db;margin-bottom:15px;display:flex;justify-content:space-between;align-items:center}.clear-history{background:rgba(255,0,0,.2);color:#ff6b6b;border:1px solid rgba(255,107,107,.3);padding:5px 15px;border-radius:5px;cursor:pointer;font-size:.9rem}.history-list{max-height:200px;overflow-y:auto}.history-item{padding:10px;background:rgba(255,255,255,.05);border-radius:8px;margin-bottom:8px;font-size:.9rem;color:#ccc;border-left:3px solid rgba(0,180,219,.5)}@keyframes fadeIn{0%{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.footer{text-align:center;margin-top:30px;color:#666;font-size:.9rem}@media (max-width:600px){.container{padding:25px}.header h1{font-size:2rem}.input-group input{padding:12px;font-size:1.1rem}.btn-calculate{padding:15px;font-size:1.2rem}.result-value{font-size:1.5rem}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 OVN Premium Calculator</h1>
+            <p>Calculate Average IV and OVN Premium instantly</p>
+        </div>
+        
+        <div class="input-group">
+            <label for="putIV">Put IV (%)</label>
+            <input type="number" id="putIV" placeholder="e.g., 20" step="0.1" value="20">
+        </div>
+        
+        <div class="input-group">
+            <label for="callIV">Call IV (%)</label>
+            <input type="number" id="callIV" placeholder="e.g., 20" step="0.1" value="20">
+        </div>
+        
+        <div class="input-group">
+            <label for="spotPrice">Spot Price</label>
+            <input type="number" id="spotPrice" placeholder="e.g., 13600" step="0.01" value="13600">
+        </div>
+        
+        <div class="input-group">
+            <label for="gap">Gap</label>
+            <input type="number" id="gap" placeholder="e.g., 155" step="0.01" value="155">
+        </div>
+        
+        <button class="btn-calculate" onclick="_0x4f3d()">🚀 Calculate OVN Premium</button>
+        
+        <div class="results" id="results">
+            <div class="result-item">
+                <div class="result-label">Average IV</div>
+                <div class="result-value" id="avgIV">0%</div>
+            </div>
+            
+            <div class="result-item">
+                <div class="result-label">OVN Premium</div>
+                <div class="result-value" id="ovnPremium">0</div>
+            </div>
+            
+            <div class="result-item">
+                <div class="result-label">Daily Expected Move</div>
+                <div class="result-value" id="dailyMove">0</div>
+            </div>
+        </div>
+        
+        <div class="history">
+            <h3>
+                Calculation History
+                <button class="clear-history" onclick="_0x5a2b()">Clear</button>
+            </h3>
+            <div class="history-list" id="historyList"></div>
+        </div>
+        
+        <div class="footer">
+            <p>✡️Made with jew wichy for niggers and goy✡️</p>
+        </div>
+    </div>
+
+    <script>
+        let _0x1a2b=JSON.parse(localStorage.getItem('ovnHistory'))||[];
+        function _0x3c4d(){const _0x2e3f=document.getElementById('historyList');_0x2e3f.innerHTML='';if(_0x1a2b.length===0){_0x2e3f.innerHTML='<div style="text-align: center; color: #666; padding: 20px;">No calculations yet</div>';return;}_0x1a2b.forEach(_0x4d5e=>{const _0x5f6g=document.createElement('div');_0x5f6g.className='history-item';_0x5f6g.innerHTML=`<div style="display: flex; justify-content: space-between; align-items: center;"><div style="font-size: 0.8rem; color: #888;">${_0x4d5e.timestamp}</div><div style="font-weight: bold; color: #00b4db;">OVN: ${_0x4d5e.ovnPremium.toFixed(4)}</div></div><div style="margin-top: 5px; font-size: 0.85rem;">Put: ${_0x4d5e.putIV}% | Call: ${_0x4d5e.callIV}% | Spot: ${_0x4d5e.spotPrice} | Gap: ${_0x4d5e.gap}</div>`;_0x2e3f.appendChild(_0x5f6g);});}
+        function _0x4f3d(){const _0x6g7h=parseFloat(document.getElementById('putIV').value);const _0x7h8i=parseFloat(document.getElementById('callIV').value);const _0x8i9j=parseFloat(document.getElementById('spotPrice').value);const _0x9j0k=parseFloat(document.getElementById('gap').value);if(isNaN(_0x6g7h)||isNaN(_0x7h8i)||isNaN(_0x8i9j)||isNaN(_0x9j0k)){alert('Please enter valid numbers in all fields');return;}const _0xak1l=(_0x6g7h+_0x7h8i)/2;const _0xbl2m=Math.round(_0xak1l);const _0xcm3n=Math.sqrt(252);const _0xdn4o=_0xbl2m/_0xcm3n;const _0xen5p=_0x8i9j*(_0xdn4o/100);let _0xfn6q=0;if(_0xen5p!==0){_0xfn6q=_0x9j0k/_0xen5p;}document.getElementById('avgIV').textContent=_0xbl2m+'%';document.getElementById('ovnPremium').textContent=_0xfn6q.toFixed(10);document.getElementById('dailyMove').textContent=_0xen5p.toFixed(2);document.getElementById('results').classList.add('show');const _0xgn7r=new Date().toLocaleTimeString();const _0xhn8s={timestamp:_0xgn7r,putIV:_0x6g7h,callIV:_0x7h8i,spotPrice:_0x8i9j,gap:_0x9j0k,avgIV:_0xbl2m,ovnPremium:_0xfn6q,dailyMove:_0xen5p};_0x1a2b.unshift(_0xhn8s);if(_0x1a2b.length>10){_0x1a2b=_0x1a2b.slice(0,10);}localStorage.setItem('ovnHistory',JSON.stringify(_0x1a2b));_0x3c4d();document.querySelector('.btn-calculate').textContent='✓ Calculated!';setTimeout(()=>{document.querySelector('.btn-calculate').textContent='🚀 Calculate OVN Premium';},1500);}
+        function _0x5a2b(){if(confirm('Are you sure you want to clear all history?')){_0x1a2b=[];localStorage.removeItem('ovnHistory');_0x3c4d();}}
+        document.addEventListener('keypress',function(_0xin9y){if(_0xin9y.key==='Enter'){_0x4f3d();}});
+        document.getElementById('putIV').focus();
+        function _0y10z(_0zin0a){const _0ain1b={1:[20,20,13600,155],2:[25,15,15000,200],3:[18,22,14200,120],4:[30,10,16000,300]};const[_0bin2c,_0cin3d,_0din4e,_0ein5f]=_0ain1b[_0zin0a];document.getElementById('putIV').value=_0bin2c;document.getElementById('callIV').value=_0cin3d;document.getElementById('spotPrice').value=_0din4e;document.getElementById('gap').value=_0ein5f;}
+        document.querySelector('.footer').innerHTML+=`<div style="margin-top: 15px;"><small>Quick fill:</small><button onclick="_0y10z(1)" style="background: transparent; color: #00b4db; border: 1px solid #00b4db; padding: 3px 8px; margin: 0 3px; border-radius: 4px; cursor: pointer;">Example 1</button><button onclick="_0y10z(2)" style="background: transparent; color: #00b4db; border: 1px solid #00b4db; padding: 3px 8px; margin: 0 3px; border-radius: 4px; cursor: pointer;">Example 2</button><button onclick="_0y10z(3)" style="background: transparent; color: #00b4db; border: 1px solid #00b4db; padding: 3px 8px; margin: 0 3px; border-radius: 4px; cursor: pointer;">Example 3</button></div>`;
+        _0x3c4d();
+    </script>
+</body>
+</html>
